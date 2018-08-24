@@ -20,7 +20,7 @@ fi
 
 # sync files from FTP server
 lftp <<-SCRIPT
-  open ftp2.census.gov
+  open census.mirror.geocode.earth
   mirror -e -n -r --parallel=20 --ignore-time /geo/tiger/TIGER2016/ADDRFEAT/ $TIGERPATH/downloads
   exit
 SCRIPT
