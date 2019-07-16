@@ -60,6 +60,10 @@ function streamFactory(){
     try { address.setPostcode( json.tags['addr:postcode'] ); }
     catch( e ){ /* ignore error */ }
 
+    try { address.setMaxSpeed( parseInt(json.tags['maxspeed'] )); }
+    catch( e ){ /* ignore error */ }
+
+    
     // valid address; push downstream
     this.push( address );
     next();
