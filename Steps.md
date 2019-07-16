@@ -47,11 +47,13 @@ git clone https://github.com/pelias/pbf2json.git
 #import polyline
 ./interpolate polyline ../data/street.db < ../data/centro-latest.osm.polylines
 
-#import osm data
-./interpolate osm ../data/address.db ../data/street.db < ../data/centro-latest.osm.json
+
 
 #import openaddresses
 ./interpolate oa ../data/address.db ../data/street.db < ../data/oa/it/countrywide.csv  
+
+#import osm data
+./interpolate osm ../data/address.db ../data/street.db < ../data/centro-latest.osm.json
  
 #compute fractional house numbers for the street vertices
 ./interpolate vertices ../data/address.db ../data/street.db
