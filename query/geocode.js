@@ -11,7 +11,7 @@ var MAX_MATCHES = 20;
   exact match was found or not.
 **/
 
-var SQL2= [
+var SQL= [
   'WITH base AS (',
     'SELECT id, housenumber, rowid',
     'FROM address',
@@ -41,18 +41,6 @@ var SQL2= [
   'LIMIT %%MAX_MATCHES%%;'
 ].join(' ');
 
-var SQL= [
- 
-    'SELECT *',
-    'FROM address',
-    'WHERE id IN (',
-      'SELECT id',
-      'FROM street.names',
-      'WHERE ( %%NAME_CONDITIONS%% )',
-    ')',
-  
-  'LIMIT %%MAX_MATCHES%%;'
-].join(' ');
 
 var NAME_SQL = '(street.names.name=?)';
 
