@@ -3,9 +3,9 @@ var near = require('../api/near'),
     pretty = require('../lib/pretty');
 
 // help text
-console.log(process.argv.length)
+console.log(process.argv)
 
-if( process.argv.length !== 6 ){
+if( process.argv.length < 4  ){
   console.error('invalid args.');
   console.error('usage: {addressdb} {streetdb} {lat} {lon}');
   console.error('example: node cmd/near address.db street.db "-41.288788" "174.766843"');
