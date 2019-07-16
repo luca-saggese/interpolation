@@ -34,7 +34,7 @@ function setup( addressDbPath, streetDbPath ){
 
     // perform a db lookup for the specified street
     // @todo: perofmance: only query for part of the table
-    query.search( db, normalized.number, normalized.street, function( err, res ){
+    query.geocode( db, normalized.number, normalized.street, function( err, res ){
 
       // @note: results can be from multiple different street ids.
 
