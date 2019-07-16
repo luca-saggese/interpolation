@@ -21,7 +21,7 @@ var SQL= [
       'WHERE ( %%NAME_CONDITIONS%% )',
     ')',
   ')',
-  'SELECT address.*, street.names.* FROM address, street.names',
+  'SELECT * FROM address, street.names',
   'WHERE address.rowid=street.names.rowid and address.rowid IN (',
     'SELECT rowid FROM (',
       'SELECT * FROM base',
