@@ -67,7 +67,7 @@ module.exports = function( db, number, names, cb ){
   var max = { names: Math.min( names.length, MAX_NAMES ) };
 
   // use named parameters to avoid sending coordinates twice for rtree conditions
-  var position = 3; // 1 and 2 are used by lon and lat.
+  var position = 1; // 1 and 2 are used by lon and lat.
 
   // add name conditions to query
   var nameConditions = Array.apply(null, new Array(max.names)).map( function(){
