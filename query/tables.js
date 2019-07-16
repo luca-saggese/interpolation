@@ -57,7 +57,7 @@ module.exports.address = function( db, rebuild, done ){
       '(',
         'rowid INTEGER PRIMARY KEY, id INTEGER, source TEXT, source_id TEXT, city TEXT,',
         'district TEXT, region TEXT, max_speed INTEGER,',
-        'UNIQUE( id, housenumber ) ON CONFLICT IGNORE',
+        'UNIQUE( id ) ON CONFLICT IGNORE',
       ');'
     ].join(' '));
 
