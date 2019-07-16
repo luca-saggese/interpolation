@@ -40,13 +40,13 @@ function streamFactory(db, done){
 
           // insert points in address table
           stmt.address.run(address, assert.statement.address);
-          stmt.address_extra.run(address, assert.statement.address);
+          stmt.address_extra.run(address, assert.statement.address_extra);
         });
       });
 
       // commit transaction
       db.run('END TRANSACTION', function(err){
-
+console.log(err)
         // error checking
         assert.transaction.end(err);
 
