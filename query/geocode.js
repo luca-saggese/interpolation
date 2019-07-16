@@ -22,7 +22,7 @@ var SQL= [
     ')',
   ')',
   'SELECT * FROM address, street.names',
-  'WHERE address.rowid=street.names.rowid and address.rowid IN (',
+  'WHERE address.id=street.names.id and address.rowid IN (',
     'SELECT rowid FROM (',
       'SELECT * FROM base',
       'WHERE housenumber < "%%TARGET_HOUSENUMBER%%"',
