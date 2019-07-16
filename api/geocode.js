@@ -25,21 +25,16 @@ function setup( addressDbPath, streetDbPath ){
 
     if( 'string' !== typeof street ){ return cb( 'invalid street' ); }
 
-    var normalized = {
-      street: analyze.parse_address( street )
-    };
+    var normalized = analyze.parse_address( street );
 
     console.log(normalized)
 
-    // error checking
-    if( isNaN( point.lat ) ){ return cb( 'invalid latitude' ); }
-    if( isNaN( point.lon ) ){ return cb( 'invalid longitude' ); }
     if( isNaN( normalized.number ) ){ return cb( 'invalid number' ); }
     if( !normalized.street.length ){ return cb( 'invalid street' ); }
 
     // perform a db lookup for the specified street
     // @todo: perofmance: only query for part of the table
-    query.search( db, point, normalized.number, normalized.street, function( err, res ){
+    query.search( db, normalized.number, normalized.street, function( err, res ){
 
       // @note: results can be from multiple different street ids.
 
