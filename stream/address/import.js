@@ -10,8 +10,14 @@ function streamFactory(db, done){
     address: db.prepare([
       'INSERT INTO address (rowid, id, source, source_id, housenumber, lat, lon, parity, proj_lat, proj_lon)',
       'VALUES (NULL, $id, $source, $source_id, $housenumber, $lat, $lon, $parity, $proj_lat, $proj_lon);'
+    ].join(' ')),
+    address_extra: db.prepare([
+      'INSERT INTO address_extra (rowid, id, source, source_id, city, district, region, max_speed)',
+      'VALUES (NULL, $id, $source, $source_id, $city, $district, $region, $pmax_speed;'
     ].join(' '))
   };
+
+
 
   // tick import stats
   var stats = new Statistics();
@@ -34,6 +40,7 @@ function streamFactory(db, done){
 
           // insert points in address table
           stmt.address.run(address, assert.statement.address);
+          stmt.address_extra.run(address, assert.statement.address);
         });
       });
 
