@@ -24,7 +24,7 @@ var point = {
 var renderer = ( process.argv[6] === 'geojson' ) ? pretty.geojson : pretty.table;
 
 conn.query( point,  function( err, res ){
-
+console.log(res)
   if( !res ){
     return console.error( '0 results found' );
   }
