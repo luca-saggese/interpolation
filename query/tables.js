@@ -52,6 +52,14 @@ module.exports.address = function( db, rebuild, done ){
         'UNIQUE( id, housenumber ) ON CONFLICT IGNORE',
       ');'
     ].join(' '));
+    db.run([
+      'CREATE TABLE IF NOT EXISTS address_extra',
+      '(',
+        'rowid INTEGER PRIMARY KEY, id INTEGER, source TEXT, source_id TEXT, city TEXT,',
+        'district TEXT, region TEXT, max_speed INTEGER,',
+        'UNIQUE( id, housenumber ) ON CONFLICT IGNORE',
+      ');'
+    ].join(' '));
 
     db.wait(done);
   });
