@@ -13,7 +13,7 @@ function streamFactory(db, done){
     ].join(' ')),
     address_extra: db.prepare([
       'INSERT INTO address_extra (rowid, id, source, source_id, city, district, region, max_speed)',
-      'VALUES (NULL, $id, $source, $source_id, $city, $district, $region, $pmax_speed);'
+      'VALUES (NULL, $id, $source, $source_id, $city, $district, $region, $max_speed);'
     ].join(' '))
   };
 
