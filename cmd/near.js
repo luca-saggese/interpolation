@@ -5,19 +5,19 @@ var near = require('../api/near'),
 // help text
 console.log(process.argv)
 
-if( process.argv.length < 4  ){
+if( process.argv.length !== 5  ){
   console.error('invalid args.');
-  console.error('usage: {addressdb} {streetdb} {lat} {lon}');
-  console.error('example: node cmd/near address.db street.db "-41.288788" "174.766843"');
+  console.error('usage:  {streetdb} {lat} {lon}');
+  console.error('example: node cmd/near street.db "-41.288788" "174.766843"');
   process.exit(1);
 }
 
-var conn = near( process.argv[2], process.argv[3] );
+var conn = near( process.argv[2] );
 var names = [ process.argv[6] ];
 
 var point = {
-  lat: parseFloat( process.argv[4] ),
-  lon: parseFloat( process.argv[5] )
+  lat: parseFloat( process.argv[3] ),
+  lon: parseFloat( process.argv[4] )
 };
 
 // optionally pass 'geojson' as the 6th arg to get json output
