@@ -26,7 +26,7 @@ function setup( addressDbPath, streetDbPath ){
     if( 'string' !== typeof street ){ return cb( 'invalid street' ); }
 
     var normalized = {
-      street: analyze.street( street )
+      street: analyze.parse_address( street )
     };
 
     console.log(normalized)
