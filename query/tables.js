@@ -56,7 +56,7 @@ module.exports.address = function( db, rebuild, done ){
       'CREATE TABLE IF NOT EXISTS address_extra',
       '(',
         'rowid INTEGER PRIMARY KEY, id INTEGER, source TEXT, source_id TEXT, city TEXT,',
-        'district TEXT, region TEXT, max_speed INTEGER,',
+        'district TEXT, region TEXT, max_speed INTEGER',
         'UNIQUE( id ) ON CONFLICT IGNORE',
       ');'
     ].join(' '));
