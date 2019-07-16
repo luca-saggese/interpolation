@@ -36,11 +36,11 @@ function streamFactory(db, done){
         assert.transaction.start(err);
 
         // import batch
-        batch.forEach( function( address ){
-console.log('address',address)
+        batch.forEach( function( address, address_extra ){
+
           // insert points in address table
-          stmt.address.run(address, assert.statement.address);
-          stmt.address_extra.run(address, assert.statement.address_extra);
+          stmt.address.run(address.address, assert.statement.address);
+          stmt.address_extra.run(address.address_extra, assert.statement.address_extra);
         });
       });
 
