@@ -37,7 +37,7 @@ function setup( addressDbPath, streetDbPath ){
     query.geocode( db, normalized.number, normalized.street, function( err, res ){
 
       // @note: results can be from multiple different street ids.
-console.log(err, res)
+console.log('---',err, res)
       // an error occurred or no results were found
       if( err || !res || !res.length ){ return cb( err, null ); }
 
