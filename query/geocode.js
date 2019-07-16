@@ -41,7 +41,7 @@ var SQL2= [
   'LIMIT %%MAX_MATCHES%%;'
 ].join(' ');
 
-var SQL2= [
+var SQL= [
  
     'SELECT *',
     'FROM address',
