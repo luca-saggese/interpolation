@@ -79,6 +79,8 @@ module.exports = function( db, number, names, cb ){
                .replace( '%%MAX_MATCHES%%', MAX_MATCHES )
                .split( '%%TARGET_HOUSENUMBER%%' ).join( number );
 
+  console.log(sql)
+
   // create a variable array of params for the query
   var params = [].concat( names.slice(0, max.names) );
 
