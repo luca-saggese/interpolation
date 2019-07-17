@@ -51,7 +51,7 @@ var NONUMBER_SQL = 'SELECT rowid FROM base';
 
 
 var NAME_SQL = '(street.names.name=?)';
-var CITY_SQL = '(street.names.city=?)';
+var CITY_SQL = '(address.city=?)';
 
 module.exports = function( db, address, cb ){
 
