@@ -18,34 +18,38 @@ var SQL= [
     'WHERE id IN (',
       'SELECT id',
       'FROM street.names',
-      'WHERE ( %%NAME_CONDITIONS%% )',
+      'WHERE ( %%NAME_CONDITIONS%% %%CITY_CONDITION%% )',
     ')',
   ')',
-  'SELECT * FROM address, street.names, address_extra',
-  'WHERE address_extra.id=address.id and address.id=street.names.id and address.rowid IN (',
-    'SELECT rowid FROM (',
-      'SELECT * FROM base',
-      'WHERE housenumber < "%%TARGET_HOUSENUMBER%%"',
-      'GROUP BY id HAVING( MAX( housenumber ) )',
-      'ORDER BY housenumber DESC',
-    ')',
-    'UNION',
-    'SELECT rowid FROM (',
-      'SELECT * FROM base',
-      'WHERE housenumber >= "%%TARGET_HOUSENUMBER%%"',
-      'GROUP BY id HAVING( MIN( housenumber ) )',
-      'ORDER BY housenumber ASC',
-    ')',
-  ')',
+  '%%NUMBER_SQL%%',
   'ORDER BY housenumber ASC', // @warning business logic depends on this
   'LIMIT %%MAX_MATCHES%%;'
 ].join(' ');
 
+var NUMBER_SQL = ['and address.rowid IN (',
+'SELECT rowid FROM (',
+  'SELECT * FROM base',
+  'WHERE housenumber < "%%TARGET_HOUSENUMBER%%"',
+  'GROUP BY id HAVING( MAX( housenumber ) )',
+  'ORDER BY housenumber DESC',
+')',
+'UNION',
+'SELECT rowid FROM (',
+  'SELECT * FROM base',
+  'WHERE housenumber >= "%%TARGET_HOUSENUMBER%%"',
+  'GROUP BY id HAVING( MIN( housenumber ) )',
+  'ORDER BY housenumber ASC',
+')',
+')'].join(' ');
 
 var NAME_SQL = '(street.names.name=?)';
+var CITY_SQL = '(street.names.city=?)';
 
-module.exports = function( db, number, names, cb ){
+module.exports = function( db, address, cb ){
 
+  var names = address.names;
+  var city = address.city;
+  var number = address.number;
   // error checking
   if( !names || !names.length ){
     return cb( null, [] );
@@ -62,9 +66,14 @@ module.exports = function( db, number, names, cb ){
     return NAME_SQL.replace('?', '?' + position++);
   });
 
+  var cityConditions = '';
+  if ( city ) { cityConditions = 'AND ' + CITY_SQL.replace('?', `'${city}'`)}
+
+  if ( number ) { SQL = SQL.replace('%%NUMBER_SQL%%', NUMBER_SQL); }
   // build unique sql statement
   var sql = SQL.replace( '%%NAME_CONDITIONS%%', nameConditions.join(' OR ') )
                .replace( '%%MAX_MATCHES%%', MAX_MATCHES )
+               .replace( '%%CITY_CONDITION%%', cityConditions )
                .split( '%%TARGET_HOUSENUMBER%%' ).join( number );
 
   console.log(sql)

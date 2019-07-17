@@ -29,12 +29,12 @@ function setup( addressDbPath, streetDbPath ){
 
     console.log(normalized)
 
-    if( isNaN( normalized.number ) ){ return cb( 'invalid number' ); }
+    //if( isNaN( normalized.number ) ){ return cb( 'invalid number' ); }
     if( !normalized.street.length ){ return cb( 'invalid street' ); }
 
     // perform a db lookup for the specified street
     // @todo: perofmance: only query for part of the table
-    query.geocode( db, normalized.number, normalized.street, function( err, res ){
+    query.geocode( db, normalized, function( err, res ){
 
       // @note: results can be from multiple different street ids.
 console.log('---',err, res)
