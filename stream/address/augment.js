@@ -66,7 +66,8 @@ function streamFactory(db, done){
           $lat: point[1],
           $parity: parity,
           $proj_lon: nearest.proj.point[0],
-          $proj_lat: nearest.proj.point[1]
+          $proj_lat: nearest.proj.point[1],
+          $city: address.getCity()
         },
         address_extra:{
           $id: nearest.street.id,
@@ -75,7 +76,8 @@ function streamFactory(db, done){
           $city: address.getCity(),
           $district: address.getDistrict(),
           $region: address.getRegion(),
-          $max_speed: address.getMaxSpeed()
+          $max_speed: address.getMaxSpeed(),
+          $highway_type: address.getHighwayType()
         }
       });
 

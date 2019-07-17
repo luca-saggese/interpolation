@@ -48,7 +48,7 @@ module.exports.address = function( db, rebuild, done ){
       'CREATE TABLE IF NOT EXISTS address',
       '(',
         'rowid INTEGER PRIMARY KEY, id INTEGER, source TEXT, source_id TEXT, housenumber REAL,',
-        'lat REAL, lon REAL, parity TEXT, proj_lat REAL, proj_lon REAL,',
+        'lat REAL, lon REAL, parity TEXT, proj_lat REAL, proj_lon REAL, city TEXT,',
         'UNIQUE( id, housenumber ) ON CONFLICT IGNORE',
       ');'
     ].join(' '));
@@ -56,7 +56,7 @@ module.exports.address = function( db, rebuild, done ){
       'CREATE TABLE IF NOT EXISTS address_extra',
       '(',
         'rowid INTEGER PRIMARY KEY, id INTEGER, source TEXT, source_id TEXT, city TEXT,',
-        'district TEXT, region TEXT, max_speed INTEGER,',
+        'district TEXT, region TEXT, max_speed INTEGER, highway_type TEXT,',
         'UNIQUE( id ) ON CONFLICT IGNORE',
       ');'
     ].join(' '));
