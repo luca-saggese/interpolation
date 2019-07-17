@@ -43,7 +43,7 @@ var NUMBER_SQL = ['and address.rowid IN (',
 ')',
 'COLLATE NOCASE'].join(' ');
 
-var NAME_SQL = '(street.names.name=?)';
+var NAME_SQL = 'street.names.name=?';
 var CITY_SQL = 'street.names.city=?';
 
 module.exports = function( db, address, cb ){
