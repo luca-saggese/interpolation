@@ -3,6 +3,8 @@ var util = require('util'),
     through = require('through2'),
     Address = require('../../lib/Address');
 
+var valid_highways = ['motorway','trunk','primary','secondary','tertiary','unclassified','residential','motorway_link','trunk_link','primary_link','secondary_link','tertiary_link','living_street','track','escape','road'];
+
 /**
   convert openstreetmap data to a generic Address model.
 **/
@@ -63,9 +65,16 @@ function streamFactory(){
     try { address.setMaxSpeed( parseInt(json.tags['maxspeed'] )); }
     catch( e ){ /* ignore error */ }
 
+    var highway_type = json.tags['highway'];
+      
+    try { address.setHighwayType( parseInt(json.tags['highway'] )); }
+    catch( e ){ /* ignore error */ }
+      
+    if(valid_highways.indexOf(highway_type) !== -1) {
+        // valid address; push downstream
+        this.push( address );
+    }
     
-    // valid address; push downstream
-    this.push( address );
     next();
   });
 }
