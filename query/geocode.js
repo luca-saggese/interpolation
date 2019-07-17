@@ -18,7 +18,7 @@ var SQL= [
     'WHERE id IN (',
       'SELECT id',
       'FROM street.names',
-      'WHERE ( %%NAME_CONDITIONS%% %%CITY_CONDITION%% )',
+      'WHERE ( %%NAME_CONDITIONS%% ) %%CITY_CONDITION%%',
     ')',
   ')',
   '%%NUMBER_SQL%%',
