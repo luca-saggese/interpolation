@@ -40,7 +40,8 @@ var NUMBER_SQL = ['and address.rowid IN (',
   'GROUP BY id HAVING( MIN( housenumber ) )',
   'ORDER BY housenumber ASC',
 ')',
-')'].join(' ');
+')',
+'COLLATE NOCASE'].join(' ');
 
 var NAME_SQL = '(street.names.name=?)';
 var CITY_SQL = '(street.names.city=?)';
