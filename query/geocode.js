@@ -21,12 +21,17 @@ var SQL= [
       'WHERE ( %%NAME_CONDITIONS%% ) %%CITY_CONDITION%%',
     ')',
   ')',
-  '%%NUMBER_SQL%%',
+  'SELECT * FROM address, street.names, address_extra',
+  'WHERE address_extra.id=address.id and address.id=street.names.id',
+  'and address.rowid IN (',
+    '%%NUMBER_SQL%%',
+  ')',
   'ORDER BY housenumber ASC', // @warning business logic depends on this
-  'LIMIT %%MAX_MATCHES%%;'
+  'LIMIT %%MAX_MATCHES%%',
+  'COLLATE NOCASE;'
 ].join(' ');
 
-var NUMBER_SQL = ['and address.rowid IN (',
+var NUMBER_SQL = [
 'SELECT rowid FROM (',
   'SELECT * FROM base',
   'WHERE housenumber < "%%TARGET_HOUSENUMBER%%"',
@@ -39,12 +44,14 @@ var NUMBER_SQL = ['and address.rowid IN (',
   'WHERE housenumber >= "%%TARGET_HOUSENUMBER%%"',
   'GROUP BY id HAVING( MIN( housenumber ) )',
   'ORDER BY housenumber ASC',
-')',
-')',
-'COLLATE NOCASE'].join(' ');
+')'].join(' ');
 
-var NAME_SQL = 'street.names.name=?';
-var CITY_SQL = 'street.names.city=?';
+var NONUMBER_SQL = 'SELECT rowid FROM base';
+
+
+
+var NAME_SQL = '(street.names.name=?)';
+var CITY_SQL = '(street.names.city=?)';
 
 module.exports = function( db, address, cb ){
 
@@ -70,9 +77,11 @@ module.exports = function( db, address, cb ){
   var cityConditions = '';
   if ( city ) { cityConditions = 'AND ' + CITY_SQL.replace('?', `'${city}'`)}
 
-  if ( number ) { SQL = SQL.replace('%%NUMBER_SQL%%', NUMBER_SQL); }
+  var num_sql = NONUMBER_SQL;
+  if ( number ) { num_sql = NUMBER_SQL; } 
   // build unique sql statement
-  var sql = SQL.replace( '%%NAME_CONDITIONS%%', nameConditions.join(' OR ') )
+  var sql = SQL.replace('%%NUMBER_SQL%%', NUMBER_SQL)
+               .replace( '%%NAME_CONDITIONS%%', nameConditions.join(' OR ') )
                .replace( '%%MAX_MATCHES%%', MAX_MATCHES )
                .replace( '%%CITY_CONDITION%%', cityConditions )
                .split( '%%TARGET_HOUSENUMBER%%' ).join( number );
