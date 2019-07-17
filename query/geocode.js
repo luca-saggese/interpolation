@@ -48,7 +48,7 @@ var CITY_SQL = '(street.names.city=?)';
 
 module.exports = function( db, address, cb ){
 
-  var names = address.names;
+  var names = address.street;
   var city = address.city;
   var number = address.number;
   // error checking
