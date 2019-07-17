@@ -73,10 +73,8 @@ function streamFactory(){
     try { address.setHighwayType( parseInt(json.tags['highway'] )); }
     catch( e ){ /* ignore error */ }
       
-    if(valid_highways.indexOf(highway_type) !== -1) {
-        // valid address; push downstream
-        this.push( address );
-    }
+    // valid address; push downstream
+    this.push( address );
     
     next();
   });
