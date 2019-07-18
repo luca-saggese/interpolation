@@ -45,7 +45,7 @@ function streamFactory(db, done){
           // insert points in address table
           stmt.address.run(address.address, assert.statement.address);
           stmt.address_extra.run(address.address_extra, assert.statement.address_extra);
-          if(address.getHighwayType()) {
+          if(address['$highway_type']) {
               stmt.street_extra.run(address.street_extra, assert.statement.street_extra);
           }
         });
