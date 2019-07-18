@@ -74,10 +74,7 @@ function streamFactory(db, done){
           $source: address.getSource(),
           $source_id: address.getId(),
           $city: address.getCity(),
-          $district: address.getDistrict(),
-          $region: address.getRegion(),
-          $max_speed: address.getMaxSpeed(),
-          $highway_type: address.getHighwayType()
+          $district: address.getDistrict()
         },
         street_extra:{
           $city: address.getCity(),
