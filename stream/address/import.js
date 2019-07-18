@@ -41,7 +41,7 @@ function streamFactory(db, done){
 
         // import batch
         batch.forEach( function( address, address_extra ){
-
+console.log('---',address)
           // insert points in address table
           stmt.address.run(address.address, assert.statement.address);
           stmt.address_extra.run(address.address_extra, assert.statement.address_extra);
