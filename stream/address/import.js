@@ -14,11 +14,11 @@ function streamFactory(db, done){
     address_extra: db.prepare([
       'INSERT INTO address_extra (rowid, id, source, source_id, city, district, region)',
       'VALUES (NULL, $id, $source, $source_id, $city, $district, $region);'
-    ].join(' ')),
+    ].join(' '))/*,
     street_extra: db.prepare([
       'UPDATE street.names SET city=$city, district=$district, region=$region, max_speed=$max_speed, highway_type=$highway_type',
       'where street.names.wid = $wid;'
-    ].join(' '))
+    ].join(' '))*/
   };
 
 
