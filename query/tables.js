@@ -13,8 +13,7 @@ module.exports.street = function( db, rebuild, done ){
     if( rebuild ){ db.run('DROP TABLE IF EXISTS names;'); }
     db.run([
       'CREATE TABLE IF NOT EXISTS names',
-      '(rowid INTEGER PRIMARY KEY, id INTEGER, name TEXT, city TEXT,',
-        'district TEXT, region TEXT, max_speed INTEGER, highway_type TEXT, wid INTEGER);'
+      '(rowid INTEGER PRIMARY KEY, id INTEGER, name TEXT, maxspeed INTEGER, type TEXT, wid INTEGER);'
     ].join(' '));
 
     // create fts table
