@@ -8,7 +8,7 @@ function streamFactory(db, done){
   // sqlite3 prepared statements
   var stmt = {
     rtree: db.prepare('INSERT INTO rtree (id, minX, maxX, minY, maxY) VALUES ($id, $minX, $maxX, $minY, $maxY);'),
-    names: db.prepare('INSERT INTO names (rowid, id, name) VALUES (NULL, $id, $name);'),
+    names: db.prepare('INSERT INTO names (rowid, id, name, wid) VALUES (NULL, $id, $name, $wid);'),
     line: db.prepare('INSERT INTO polyline (id, line) VALUES ($id, $line);')
   };
 
@@ -35,7 +35,8 @@ function streamFactory(db, done){
           street.getNames().forEach( function( name ){
             stmt.names.run({
               $id:   street.getId(),
-              $name: name
+              $name: name,
+              $wid:   street.getWid(),
             }, assert.statement.names);
           });
 
