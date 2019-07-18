@@ -40,8 +40,8 @@ function parse( row ){
     if( cols.length > 2 ){
 
       var street = new Street();
-      street.setId( cols[0] )
-            .setNames( cols.slice(2) )
+      street.setId( cols[cols.length - 1] )
+            .setNames( cols.slice(2, cols.length -2) )
             .setEncodedPolyline( cols[1], PRECISION );
 
       return street;
