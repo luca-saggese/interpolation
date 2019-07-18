@@ -17,7 +17,7 @@ function streamFactory(db, done){
     ].join(' ')),
     street_extra: db.prepare([
       'UPDATE street.names SET city=$city, district=$district, region=$region, max_speed=$max_speed, highway_type=$highway_type',
-      'where wid = $id;'
+      'where wid = $wid;'
     ].join(' '))
   };
 
