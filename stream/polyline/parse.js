@@ -43,7 +43,7 @@ function parse( row ){
       var max_speed = cols[cols.length - 1];
 
       street.setId( cols[0] )
-            .setMaxspeed( id.substring(0,id.length-1) )
+            .setMaxspeed( max_speed.substring(0,max_speed.length-1) )
             .setType( cols[col.length - 2 ] )
             .setWid( cols[col.length - 3 ] )
             .setNames( cols.slice(2, cols.length - 3) )
