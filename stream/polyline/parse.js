@@ -42,7 +42,8 @@ function parse( row ){
       var street = new Street();
       var id = cols[cols.length - 1];
 
-      street.setId( id.substring(0,id.length-1) )
+      street.setId( cols[0] )
+            .setWid( id.substring(0,id.length-1) )
             .setNames( cols.slice(2, cols.length -1) )
             .setEncodedPolyline( cols[1], PRECISION );
 
