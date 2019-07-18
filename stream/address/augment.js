@@ -78,6 +78,14 @@ function streamFactory(db, done){
           $region: address.getRegion(),
           $max_speed: address.getMaxSpeed(),
           $highway_type: address.getHighwayType()
+        },
+        street_extra:{
+          $city: address.getCity(),
+          $district: address.getDistrict(),
+          $region: address.getRegion(),
+          $max_speed: address.getMaxSpeed(),
+          $highway_type: address.getHighwayType(),
+          $id: nearest.street.id
         }
       });
 
