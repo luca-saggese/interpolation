@@ -83,7 +83,7 @@ function streamFactory(db, done){
           $region: address.getRegion(),
           $max_speed: address.getMaxSpeed(),
           $highway_type: address.getHighwayType(),
-          $id: nearest.street.id
+          $wid: nearest.street.wid
         }
       });
 
