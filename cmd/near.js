@@ -28,7 +28,7 @@ conn.query( point,  function( err, res ){
   if( !res ){
     return console.error( '0 results found' );
   }
-console.log(res)
+
   if( renderer === pretty.geojson ){
     console.log( JSON.stringify( renderer( res ), null, 2 ) );
   } else {
