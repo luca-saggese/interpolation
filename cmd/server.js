@@ -37,7 +37,7 @@ var conn = {
   extract: extract( process.argv[2], process.argv[3] ),
   street: street( process.argv[3] ),
   geocode: geocode( process.argv[2], process.argv[3] ),
-  autocomplete: geocode( process.argv[2], process.argv[3] ),
+  autocomplete: autocomplete( process.argv[2], process.argv[3] ),
   near: near( process.argv[3] )
 };
 
