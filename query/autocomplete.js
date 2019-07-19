@@ -13,14 +13,14 @@ var MAX_MATCHES = 20;
 
 var SQL = [
   'SELECT id, name, city',
-  'FROM street.names',
-  'WHERE ( %%NAME_CONDITIONS%% )',
+  'FROM street.names, address',
+  'WHERE street.names.id = address.id ( %%NAME_CONDITIONS%% )',
   '%%CITY_CONDITIONS%%',
   'LIMIT %%MAX_MATCHES%%;'
 ].join(' ');
 
 var NAME_SQL = '(street.names.name like ?)';
-var CITY_SQL = ' AND id IN (SELECT id FROM address WHERE city = ?)';
+var CITY_SQL = ' AND street.names.id IN (SELECT id FROM address WHERE city = ?)';
 
 module.exports = function( db, address, cb ){
 
