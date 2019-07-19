@@ -7,7 +7,7 @@
 var MAX_MATCHES = 100;
 
 var SQL = [
-  'SELECT street.polyline.id, street.polyline.line, street.names.name FROM street.polyline',
+  'SELECT street.polyline.id, street.polyline.line, street.names.* FROM street.polyline',
   'JOIN street.rtree ON street.rtree.id = street.polyline.id',
   'JOIN street.names ON street.names.id = street.polyline.id',
   'WHERE (street.rtree.minX<$LON AND street.rtree.maxX>$LON AND street.rtree.minY<$LAT AND street.rtree.maxY>$LAT)',
