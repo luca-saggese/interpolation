@@ -3,8 +3,6 @@ var near = require('../api/near'),
     pretty = require('../lib/pretty');
 
 // help text
-console.log(process.argv)
-
 if( process.argv.length !== 5  ){
   console.error('invalid args.');
   console.error('usage:  {streetdb} {lat} {lon}');
