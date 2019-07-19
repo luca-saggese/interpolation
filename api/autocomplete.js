@@ -43,7 +43,7 @@ function setup( addressDbPath, streetDbPath ){
       // @note: results can be from multiple different street ids.
 console.log('---',err, res)
       // an error occurred or no results were found
-      if( err || !res || !res.length ){ return cb( err, null ); }
+      //if( err || !res || !res.length ){ return cb( err, null ); }
 //_.startCase(_.toLower(str));
       var suggestions = res.map(r=>(
           {id: r.id, text: r.name.concat(normalized.number?' ' + normalized.number.toString():'').concat(', ').concat(r.city)}
