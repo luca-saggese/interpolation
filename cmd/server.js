@@ -72,6 +72,20 @@ app.get('/search/geojson', function( req, res ){
   });
 });
 
+// search with geojson view
+// eg: http://localhost:3000/search/geocode?address=via%20portuense%2012
+app.get('/search/geocode', function( req, res ){
+
+  var address = req.query.address;
+
+  conn.search.query( address, function( err, point ){
+    if( err ){ return res.status(400).json( err ); }
+    if( !point ){ return res.status(200).json({}); }
+
+    res.json( pretty.geojson.point( point, point.lon, point.lat ) );
+  });
+});
+
 // search with table view
 // eg: http://localhost:3000/search/table?lat=-41.288788&lon=174.766843&number=16&street=glasgow%20street
 app.get('/search/table', function( req, res ){
