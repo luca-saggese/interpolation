@@ -34,6 +34,8 @@ console.log(res)
   } else {
     res=res.map(i=>{
       var street = i.street;
+      street.coordinates= street.coordinates[0] + ' ' +street.coordinates[1];
+      street.distance = i.proj.dist;
       delete street.line;
       return street;
     });
