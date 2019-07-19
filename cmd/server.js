@@ -75,7 +75,7 @@ app.get('/search/geojson', function( req, res ){
 });
 
 // search with geojson view
-// eg: http://localhost:3000/search/reverse?lat=-41.288788&lon=174.766843
+// eg: http://localhost:3000/search/reverse?lat=41.846270&lon=12.419987
 app.get('/search/reverse', function( req, res ){
 
   var point = { lat: req.query.lat, lon: req.query.lon };
