@@ -32,6 +32,11 @@ console.log(res)
   if( renderer === pretty.geojson ){
     console.log( JSON.stringify( renderer( res ), null, 2 ) );
   } else {
+    res=res.map(i=>{
+      var street = i.street;
+      delete street.polyline;
+      return street;
+    });
     console.log( renderer( res ) );
   }
 
