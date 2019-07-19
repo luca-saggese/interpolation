@@ -26,6 +26,9 @@ conn.query( point,  function( err, res ){
   if( !res ){
     return console.error( '0 results found' );
   }
+    
+  // only return 10 results
+  res = res.slice(0,10);
 
   if( renderer === pretty.geojson ){
     console.log( JSON.stringify( renderer( res ), null, 2 ) );
