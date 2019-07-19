@@ -44,9 +44,9 @@ function setup( addressDbPath, streetDbPath ){
 console.log('---',err, res)
       // an error occurred or no results were found
       if( err || !res || !res.length ){ return cb( err, null ); }
-
+//_.startCase(_.toLower(str));
       var suggestions = res.map(r=>(
-          {id: r.id, text: r.name + normalized.number?' ' + normalized.number.toString():''+ ', ' + r.city}
+          {id: r.id, text: r.name}// + normalized.number?' ' + normalized.number.toString():''+ ', ' + r.city}
       ));
       // return interpolated address
       return cb( null, {query: normalized, results:suggestions});
