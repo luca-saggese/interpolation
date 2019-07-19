@@ -44,11 +44,14 @@ module.exports = function( db, address, cb ){
   });
   
   if(city) {
-    nameConditions += CITY_SQL.replace('?', '?' + position++);
+    CITY_SQL = CITY_SQL.replace('?', '?' + position++);
+  } else {
+    CITY_SQL = '';
   }
 
   // build unique sql statement
   var sql = SQL.replace( '%%NAME_CONDITIONS%%', nameConditions.join(' OR ') )
+               .replace( '%%CITY_CONDITIONS%%', CITY_SQL )
                .replace( '%%MAX_MATCHES%%', MAX_MATCHES );
 
   // create a variable array of params for the query
