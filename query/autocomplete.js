@@ -12,7 +12,7 @@ var MAX_MATCHES = 20;
 **/
 
 var SQL = [
-  'SELECT street.id, name, city',
+  'SELECT address.id, name, city',
   'FROM street.names, address',
   'WHERE street.names.id = address.id',
   'AND( %%NAME_CONDITIONS%% )',
