@@ -3,6 +3,7 @@ var express = require('express'),
     directory = require('serve-index'),
     polyline = require('@mapbox/polyline'),
     search = require('../api/search'),
+    geocode = require('../api/geocode'),
     extract = require('../api/extract'),
     street = require('../api/street'),
     near = require('../api/near'),
@@ -73,12 +74,26 @@ app.get('/search/geojson', function( req, res ){
 });
 
 // search with geojson view
+// eg: http://localhost:3000/search/reverse?lat=-41.288788&lon=174.766843
+app.get('/search/reverse', function( req, res ){
+
+  var point = { lat: req.query.lat, lon: req.query.lon };
+
+  conn.near.query( point, function( err, point ){
+    if( err ){ return res.status(400).json( err ); }
+    if( !point ){ return res.status(200).json({}); }
+
+    res.json( pretty.geojson.point( point, point.lon, point.lat ) );
+  });
+});
+
+// search with geojson view
 // eg: http://localhost:3000/search/geocode?address=via%20portuense%2012
 app.get('/search/geocode', function( req, res ){
 
   var address = req.query.address;
 
-  conn.search.query( address, function( err, point ){
+  conn.geocode.query( address, function( err, point ){
     if( err ){ return res.status(400).json( err ); }
     if( !point ){ return res.status(200).json({}); }
 
