@@ -45,6 +45,9 @@ console.log('---',err, res)
       // an error occurred or no results were found
       if( err || !res || !res.length ){ return cb( err, null ); }
 
+      var suggestions = res.map(r=>(
+        r.name + normalized.number? normalized.number:''+ ', ' + r.city
+      ));
       // return interpolated address
       return cb( null, {query: normalized, results:res});
     });
