@@ -34,7 +34,7 @@ console.log(res)
   } else {
     res=res.map(i=>{
       var street = i.street;
-      delete street.polyline;
+      delete street.line;
       return street;
     });
     console.log( renderer( res ) );
