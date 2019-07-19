@@ -28,7 +28,7 @@ function setup( addressDbPath, streetDbPath ){
     var normalized = analyze.parse_address( street );
 
     // avoid expand?
-    //normalized.street=normalized.street[0];
+    normalized.street=[normalized.street[0]];
     console.log('searching for:', normalized)
 
     //if( isNaN( normalized.number ) ){ return cb( 'invalid number' ); }
