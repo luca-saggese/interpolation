@@ -46,7 +46,7 @@ console.log('---',err, res)
       if( err || !res || !res.length ){ return cb( err, null ); }
 //_.startCase(_.toLower(str));
       var suggestions = res.map(r=>(
-          {id: r.id, text: r.name}// + normalized.number?' ' + normalized.number.toString():''+ ', ' + r.city}
+          {id: r.id, text: r.name.concat(normalized.number?' ' + normalized.number.toString():'').concat(', ').concat(r.city)}
       ));
       // return interpolated address
       return cb( null, {query: normalized, results:suggestions});
