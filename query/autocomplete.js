@@ -20,7 +20,7 @@ var SQL = [
 ].join(' ');
 
 var NAME_SQL = '(street.names.name like ?)';
-var CITY_SQL = ' AND id IN (SELECT id FROM addres WHERE city = ?)';
+var CITY_SQL = ' AND id IN (SELECT id FROM address WHERE city = ?)';
 
 module.exports = function( db, address, cb ){
 
