@@ -46,7 +46,9 @@ console.log('---',err, res)
       // try to find an exact match
       var match = res.find( function( row ){
         if( row.source === 'VERTEX' ){ return false; }
-        return row.housenumber === normalized.number;
+        return (row.housenumber === normalized.number &&
+                row.name === normalized.street[0] && 
+               (!normalized.city || normalized.city === row.city));
       });
 
       // return exact match
