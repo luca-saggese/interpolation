@@ -112,7 +112,7 @@ app.get('/search/autocomplete', function( req, res ){
 
   conn.autocomplete.query( address, function( err, result ){
     if( err ){ return res.status(400).json( err ); }
-    if( !point ){ return res.status(200).json({}); }
+    if( !result ){ return res.status(200).json({}); }
 
     res.json( result );
   });
