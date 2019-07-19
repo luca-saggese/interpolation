@@ -83,6 +83,11 @@ sudo ldconfig
 
 Firstly you need to build the `street.db` database.
 
+```
+sudo docker run -ti -v /home/ubuntu/pelias/data/:/data lsaggese/pbf /bin/sh
+/go/src/github.com/missinglink/pbf # pbf streets /data/europe-latest.osm.pbf >/data/europe-latest.osm.polylines
+```
+
 You will need a polyline data file which contains all the streets you wish to import, you can find some pre-made extracts [here](https://github.com/pelias/polylines) and there is also information on that readme about how to generate your own extracts.
 
 See the [building the databases](https://github.com/pelias/interpolation#building-the-databases) section below for detailed information on which commands to run.
