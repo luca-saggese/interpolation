@@ -19,9 +19,13 @@ var SQL = [
 ].join(' ');
 
 var NAME_SQL = '(street.names.name like ?)';
+var CITY_SQL = ' AND (street.names.city = ?)';
 
-module.exports = function( db, point, number, names, cb ){
+module.exports = function( db, address, cb ){
 
+  var names = address.street;
+  var city = address.city;
+  var number = address.number;
   // error checking
   if( !names || !names.length ){
     return cb( null, [] );
@@ -37,6 +41,10 @@ module.exports = function( db, point, number, names, cb ){
   var nameConditions = Array.apply(null, new Array(max.names)).map( function(){
     return NAME_SQL.replace('?', '?' + position++);
   });
+  
+  if(city) {
+    nameConditions += CITY_SQL.replace('?', '?' + position++);
+  }
 
   // build unique sql statement
   var sql = SQL.replace( '%%NAME_CONDITIONS%%', nameConditions.join(' OR ') )
@@ -44,6 +52,9 @@ module.exports = function( db, point, number, names, cb ){
 
   // create a variable array of params for the query
   var params = names.slice(0, max.names).map(n=>('%' + n + '%'));
+  if(city) {
+    params = params.concat(city);
+  }
 
   // execute query
   db.all( sql, params, cb );
