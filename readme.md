@@ -45,6 +45,40 @@ The data is split in to 2 different sqlite3 databases:
 
 # Workflow
 
+##Libpostal Installation (Mac/Linux)
+------------------------
+
+Before you install, make sure you have the following prerequisites:
+
+**On Ubuntu/Debian**
+```
+sudo apt-get install curl autoconf automake libtool pkg-config
+```
+
+**On CentOS/RHEL**
+```
+sudo yum install curl autoconf automake libtool pkgconfig
+```
+
+**On Mac OSX**
+```
+brew install curl autoconf automake libtool pkg-config
+```
+
+Then to install the C library:
+
+```
+git clone https://github.com/openvenues/libpostal
+cd libpostal
+./bootstrap.sh
+./configure --datadir=[...some dir with a few GB of space...]
+make -j4
+sudo make install
+
+# On Linux it's probably a good idea to run
+sudo ldconfig
+```
+
 ### street database
 
 Firstly you need to build the `street.db` database.
