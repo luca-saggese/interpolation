@@ -15,11 +15,12 @@ var SQL = [
   'SELECT id, name, city',
   'FROM street.names',
   'WHERE ( %%NAME_CONDITIONS%% )',
+  '%%CITY_CONDITIONS%%',
   'LIMIT %%MAX_MATCHES%%;'
 ].join(' ');
 
 var NAME_SQL = '(street.names.name like ?)';
-var CITY_SQL = ' AND (street.names.city = ?)';
+var CITY_SQL = ' AND id IN (SELECT id FROM addres WHERE city = ?)';
 
 module.exports = function( db, address, cb ){
 
