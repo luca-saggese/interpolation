@@ -4,6 +4,7 @@ var express = require('express'),
     polyline = require('@mapbox/polyline'),
     search = require('../api/search'),
     geocode = require('../api/geocode'),
+    autocomplete = require('../api/autocomplete'),
     extract = require('../api/extract'),
     street = require('../api/street'),
     near = require('../api/near'),
@@ -36,6 +37,7 @@ var conn = {
   extract: extract( process.argv[2], process.argv[3] ),
   street: street( process.argv[3] ),
   geocode: geocode( process.argv[2], process.argv[3] ),
+  autocomplete: geocode( process.argv[2], process.argv[3] ),
   near: near( process.argv[3] )
 };
 
@@ -95,6 +97,20 @@ app.get('/search/geocode', function( req, res ){
   var address = req.query.address;
 
   conn.geocode.query( address, function( err, point ){
+    if( err ){ return res.status(400).json( err ); }
+    if( !point ){ return res.status(200).json({}); }
+
+    res.json( pretty.geojson.point( point, point.lon, point.lat ) );
+  });
+});
+
+// search with geojson view
+// eg: http://localhost:3000/search/geocode?address=via%20portuense%2012
+app.get('/search/autocomplete', function( req, res ){
+
+  var address = req.query.address;
+
+  conn.autocomplete.query( address, function( err, point ){
     if( err ){ return res.status(400).json( err ); }
     if( !point ){ return res.status(200).json({}); }
 
