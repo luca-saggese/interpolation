@@ -34,7 +34,7 @@ console.log(res)
   } else {
     res=res.map(i=>{
       var street = i.street;
-      street.coordinates= JSON.stringify(i.proj.point) ;
+      street.coordinates= i.proj.point[0] + ' ' + i.proj.point[1] ;
       street.distance = Math.round(i.proj.dist*1000000)/1000;
       delete street.line;
       return street;
