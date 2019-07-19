@@ -19,7 +19,7 @@ cat <<EOM
    server [address_db] [street_db]                                           start a web server
    near [lat] [lon]                                                          search nearest street to location
    extract [address_db] [street_db] [street_name]                            geocode address
-
+   autocomplete [address_db] [street_db] [street_name]                       autocomplete address
 
    build                                                                     run the import script
 EOM
@@ -45,6 +45,7 @@ case "$1" in
 'server') node "$BASEDIR/cmd/server" "$2" "$3" &;;
 'near') node "$BASEDIR/cmd/near" "$2" "$3" "$4" &;;
 'geocode') node "$BASEDIR/cmd/geocode" "$2" "$3" "$4" &;;
+'autocomplete') node "$BASEDIR/cmd/autocomplete" "$2" "$3" "$4" &;;
 'build')
 
   # validate all ENV vars are explicitly set
