@@ -4,7 +4,7 @@
 **/
 
 // maximum street segments to return
-var MAX_MATCHES = 10;
+var MAX_MATCHES = 100;
 
 var SQL = [
   'SELECT street.polyline.id, street.polyline.line, street.names.name, street.names.type, street.names.maxspeed FROM street.polyline',
