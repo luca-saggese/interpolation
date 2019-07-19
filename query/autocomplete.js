@@ -14,7 +14,8 @@ var MAX_MATCHES = 20;
 var SQL = [
   'SELECT id, name, city',
   'FROM street.names, address',
-  'WHERE street.names.id = address.id ( %%NAME_CONDITIONS%% )',
+  'WHERE street.names.id = address.id',
+  'AND( %%NAME_CONDITIONS%% )',
   '%%CITY_CONDITIONS%%',
   'LIMIT %%MAX_MATCHES%%;'
 ].join(' ');
