@@ -46,10 +46,10 @@ console.log('---',err, res)
       if( err || !res || !res.length ){ return cb( err, null ); }
 
       var suggestions = res.map(r=>(
-        r.name + normalized.number? normalized.number:''+ ', ' + r.city
+          {id: r.id, text: r.name + normalized.number? normalized.number:''+ ', ' + r.city}
       ));
       // return interpolated address
-      return cb( null, {query: normalized, results:res});
+      return cb( null, {query: normalized, results:suggestions});
     });
   };
 
