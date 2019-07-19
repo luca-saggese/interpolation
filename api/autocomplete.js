@@ -46,7 +46,7 @@ console.log('---',err, res)
       if( err || !res || !res.length ){ return cb( err, null ); }
 
       // return interpolated address
-      return cb( null, res);
+      return cb( null, {query: normalized, results:res});
     });
   };
 
