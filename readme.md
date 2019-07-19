@@ -45,7 +45,7 @@ The data is split in to 2 different sqlite3 databases:
 
 # Workflow
 
-##Libpostal Installation (Mac/Linux)
+## Libpostal Installation (Mac/Linux)
 ------------------------
 
 Before you install, make sure you have the following prerequisites:
