@@ -1,4 +1,4 @@
-var autocomplete = require('../api/autocomplete');
+var wof = require('../api/wof');
 
 // help text
 if( process.argv.length !== 3 ){
