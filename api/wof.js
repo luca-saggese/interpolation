@@ -42,6 +42,7 @@ function setup( wofDbPath ){
   var db = new sqlite3.Database( wofDbPath, sqlite3.OPEN_READWRITE );
 
   var stmt = {
+    index: db.prepate('CREATE INDEX IF NOT EXISTS id_idx ON spr (id);'),
     names: db.prepare([
       'UPDATE spr SET max_latitude=$max_latitude, min_latitude=$min_latitude,',
       'max_longitude=$max_longitude, min_longitude=$min_longitude',
@@ -49,12 +50,15 @@ function setup( wofDbPath ){
     ].join(' '))
   };
 
+
   // attach street database
   //query.attach( db, streetDbPath, 'street' );
 
   // enable memmapping of database pages
   db.run('PRAGMA mmap_size=268435456;');
   //db.run('PRAGMA street.mmap_size=268435456;');
+
+  stmt.index.run();
 
   // query method
   var q = function( cb ){
@@ -71,7 +75,7 @@ function setup( wofDbPath ){
         $id: row.id
       }
       stmt.names.run(data);
-      if(rowCount++ % 1000 == 0){
+      if(rowCount++ % 100 == 0){
         console.log(rowCount);
       }
 
