@@ -42,7 +42,7 @@ function setup( wofDbPath ){
   var db = new sqlite3.Database( wofDbPath, sqlite3.OPEN_READWRITE );
 
   var stmt = {
-    index: db.prepate('CREATE INDEX IF NOT EXISTS id_idx ON spr (id);'),
+    index: db.prepare('CREATE INDEX IF NOT EXISTS id_idx ON spr (id);'),
     names: db.prepare([
       'UPDATE spr SET max_latitude=$max_latitude, min_latitude=$min_latitude,',
       'max_longitude=$max_longitude, min_longitude=$min_longitude',
