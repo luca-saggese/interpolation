@@ -26,7 +26,7 @@ function setup( wofDbPath ){
   // query method
   var q = function( cb ){
 
-    var sql = 'SELECT * FROM geojson limit 1;';
+    var sql = 'SELECT * FROM geojson;';
   
     // execute query
     db.all( sql, [], (err,res) => {
