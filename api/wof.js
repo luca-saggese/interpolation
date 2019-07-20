@@ -20,7 +20,7 @@ function setup( wofDbPath ){
 
   // enable memmapping of database pages
   db.run('PRAGMA mmap_size=268435456;');
-  db.run('PRAGMA street.mmap_size=268435456;');
+  //db.run('PRAGMA street.mmap_size=268435456;');
 
   // query method
   var q = function( cb ){
