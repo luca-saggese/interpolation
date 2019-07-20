@@ -75,7 +75,7 @@ function setup( wofDbPath ){
         $id: row.id
       }
       stmt.names.run(data);
-      if(rowCount++ % 100 == 0){
+      if(++rowCount % 100 == 0){
         console.log(rowCount);
       }
 
