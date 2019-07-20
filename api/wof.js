@@ -10,8 +10,9 @@ function setup( wofDbPath ){
 
   var stmt = {
     names: db.prepare([
-      'UPDATE names SET max_latitude=$max_latitude, min_latitude=$min_latitude,',
-      'max_longitude=$max_longitude, min_longitude=$min_longitude;'
+      'UPDATE spr SET max_latitude=$max_latitude, min_latitude=$min_latitude,',
+      'max_longitude=$max_longitude, min_longitude=$min_longitude',
+      'WHERE id=$id;'
     ].join(' '))
   };
 
@@ -35,7 +36,8 @@ function setup( wofDbPath ){
           $max_latitude: bbox[2],
           $min_latitude: bbox[0],
           $max_longitude: bbox[3],
-          $min_longitude: bbox[1]
+          $min_longitude: bbox[1],
+          $id: row.id
         }
         stmt.names.run(data);
       })
