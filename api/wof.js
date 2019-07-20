@@ -8,13 +8,13 @@ function setup( wofDbPath ){
   sqlite3.verbose();
   var db = new sqlite3.Database( wofDbPath, sqlite3.OPEN_READWRITE );
 
-  var stmt = {
+  /*var stmt = {
     names: db.prepare([
       'UPDATE spr SET max_latitude=$max_latitude, min_latitude=$min_latitude,',
       'max_longitude=$max_longitude, min_longitude=$min_longitude',
       'WHERE id=$id;'
     ].join(' '))
-  };
+  };*/
 
   // attach street database
   //query.attach( db, streetDbPath, 'street' );
@@ -31,7 +31,7 @@ function setup( wofDbPath ){
     // execute query
     db.all( sql, null, (err,res) => {
       console.log(err, res)
-      res.forEach(row=>{
+     /* res.forEach(row=>{
         var bbox = JSON.parse(row['geojson']).bbox;
         var data = {
           $max_latitude: bbox[2],
@@ -41,12 +41,13 @@ function setup( wofDbPath ){
           $id: row.id
         }
         stmt.names.run(data);
-      })
+      })*/
+      return cb( null, {});
     } );
     
     
 
-    return cb( null, close);
+    
   };
 
   // close method to close db
