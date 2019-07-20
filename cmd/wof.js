@@ -1,7 +1,7 @@
 var autocomplete = require('../api/autocomplete');
 
 // help text
-if( process.argv.length !== 5 ){
+if( process.argv.length !== 2 ){
   console.error('invalid args.');
   console.error('usage: {wofdb}');
   console.error('example: node cmd/wof wof.db');
