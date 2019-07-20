@@ -26,10 +26,11 @@ function setup( wofDbPath ){
   // query method
   var q = function( cb ){
 
-    var sql = 'SELECT * FROM geojson;';
+    var sql = 'SELECT * FROM geojson limit 1;';
   
     // execute query
-    db.all( sql, null, (res) => {
+    db.all( sql, null, (err,res) => {
+      console.log(err, res)
       res.forEach(row=>{
         var bbox = JSON.parse(row['geojson']).bbox;
         var data = {
