@@ -41,17 +41,18 @@ function setup( wofDbPath ){
       })
     } );
     
-    // close method to close db
-    var close = db.close.bind( db );
+    
 
     return cb( null, close);
   };
 
-  
+  // close method to close db
+  var close = db.close.bind( db );
 
   // return methods
   return {
-    quer:q
+    query:q,
+    close
   };
 }
 
