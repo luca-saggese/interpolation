@@ -30,7 +30,7 @@ function setup( wofDbPath ){
   
     // execute query
     db.all( sql, [], (err,res) => {
-      console.log(err, res)
+
       res.forEach(row=>{
         var bbox = JSON.parse(row['body']).bbox;
         var data = {
