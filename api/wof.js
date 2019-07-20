@@ -26,12 +26,12 @@ function setup( wofDbPath ){
   // query method
   var q = function( cb ){
 
-    var sql = 'SELECT * FROM geojson;';
+    var sql = 'SELECT * FROM geojson limit 1;';
   
     // execute query
     db.all( sql, [], (err,res) => {
       console.log(err, res)
-     /* res.forEach(row=>{
+      res.forEach(row=>{
         var bbox = JSON.parse(row['geojson']).bbox;
         var data = {
           $max_latitude: bbox[2],
@@ -41,7 +41,7 @@ function setup( wofDbPath ){
           $id: row.id
         }
         stmt.names.run(data);
-      })*/
+      })
       return cb( null, {});
     } );
     
