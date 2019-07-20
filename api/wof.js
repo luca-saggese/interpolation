@@ -1,5 +1,38 @@
 var sqlite3 = require('sqlite3')
+//https://stackoverflow.com/questions/38869351/is-node-sqlite-each-function-load-all-queries-into-memory-or-it-use-stream-pip
 
+function asyncEach(db, sql, parameters, eachCb, doneCb) {
+  let stmt;
+
+  let cleanupAndDone = err => {
+    stmt.finalize(doneCb.bind(null, err));
+  };
+
+  stmt = db.prepare(sql, parameters, err => {
+    if (err) {
+      return cleanupAndDone(err);
+    }
+    let next = err => {
+      if (err) {
+        return cleanupAndDone(err);
+      }
+      return stmt.get(recursiveGet);
+    };
+    // Setup recursion
+    let recursiveGet = (err, row) => {
+      if (err) {
+        return cleanupAndDone(err);
+      }
+      if (!row) {
+        return cleanupAndDone(null);
+      }
+      // Call the each callback which must invoke the next callback
+      return eachCb(row, next);
+    }
+    // Start recursion
+    stmt.get(recursiveGet);
+  });
+}
 
 // export setup method
 function setup( wofDbPath ){
@@ -27,27 +60,29 @@ function setup( wofDbPath ){
   var q = function( cb ){
 
     var sql = 'SELECT * FROM geojson;';
-  
-    // execute query
-    db.all( sql, [], (err,res) => {
+    let rowCount = 0;
+    asyncEach(db, sql, [], (row, next) => {
+      var bbox = JSON.parse(row['body']).bbox;
+      var data = {
+        $max_latitude: bbox[2],
+        $min_latitude: bbox[0],
+        $max_longitude: bbox[3],
+        $min_longitude: bbox[1],
+        $id: row.id
+      }
+      stmt.names.run(data);
+      if(rowCount++ % 1000 == 0){
+        console.log(rowCount);
+      }
 
-      res.forEach(row=>{
-        var bbox = JSON.parse(row['body']).bbox;
-        var data = {
-          $max_latitude: bbox[2],
-          $min_latitude: bbox[0],
-          $max_longitude: bbox[3],
-          $min_longitude: bbox[1],
-          $id: row.id
-        }
-        stmt.names.run(data);
-      })
+      return next();
+    }, err => {
+      if (err) {
+        return done(err);
+      }
+      assert.equal(rowCount, TEST_ROW_COUNT);
       return cb( null, {});
-    } );
-    
-    
-
-    
+    });
   };
 
   // close method to close db
