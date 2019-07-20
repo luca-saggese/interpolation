@@ -32,7 +32,7 @@ function setup( wofDbPath ){
     db.all( sql, [], (err,res) => {
       console.log(err, res)
       res.forEach(row=>{
-        var bbox = row['geojson'].bbox;
+        var bbox = JSON.parse(row['body']).bbox;
         var data = {
           $max_latitude: bbox[2],
           $min_latitude: bbox[0],
