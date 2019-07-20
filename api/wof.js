@@ -10,7 +10,7 @@ function setup( wofDbPath ){
 
   var stmt = {
     names: db.prepare([
-      'UPDATE names SET max_latitude=$max_latitude, min_latitude=$min_latitude',
+      'UPDATE names SET max_latitude=$max_latitude, min_latitude=$min_latitude,',
       'max_longitude=$max_longitude, min_longitude=$min_longitude;'
     ].join(' '))
   };
