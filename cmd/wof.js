@@ -9,7 +9,6 @@ if( process.argv.length !== 3 ){
 }
 
 var conn = wof( process.argv[2] );
-var street = process.argv[4];
 
 conn.query( function( err, res ){
 

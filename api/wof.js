@@ -51,7 +51,7 @@ function setup( wofDbPath ){
 
   // return methods
   return {
-    
+    quer:q
   };
 }
 
