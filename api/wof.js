@@ -8,13 +8,13 @@ function setup( wofDbPath ){
   sqlite3.verbose();
   var db = new sqlite3.Database( wofDbPath, sqlite3.OPEN_READWRITE );
 
-  /*var stmt = {
+  var stmt = {
     names: db.prepare([
       'UPDATE spr SET max_latitude=$max_latitude, min_latitude=$min_latitude,',
       'max_longitude=$max_longitude, min_longitude=$min_longitude',
       'WHERE id=$id;'
     ].join(' '))
-  };*/
+  };
 
   // attach street database
   //query.attach( db, streetDbPath, 'street' );
