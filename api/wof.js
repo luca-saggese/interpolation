@@ -68,10 +68,10 @@ function setup( wofDbPath ){
     asyncEach(db, sql, [], (row, next) => {
       var bbox = JSON.parse(row['body']).bbox;
       var data = {
-        $max_latitude: bbox[2],
-        $min_latitude: bbox[0],
-        $max_longitude: bbox[3],
-        $min_longitude: bbox[1],
+        $max_latitude: bbox[3],
+        $min_latitude: bbox[1],
+        $max_longitude: bbox[2],
+        $min_longitude: bbox[0],
         $id: row.id
       }
       stmt.names.run(data);
