@@ -49,6 +49,23 @@ function setup( streetDbPath, wofDbPath ){
       // order streets by proximity from point (by projecting it on to each line string)
       var ordered = proximity.nearest.street( res, [ point.lon, point.lat ] );
 
+      var point = {
+      lat: parseFloat( coord.lat ),
+      lon: parseFloat( coord.lon )
+    };
+
+    // error checking
+    if( isNaN( point.lat ) ){ return cb( 'invalid latitude' ); }
+    if( isNaN( point.lon ) ){ return cb( 'invalid longitude' ); }
+
+    // perform a db lookup for nearby streets
+    query.wof( db, point, function( err, res ){
+
+      // an error occurred or no results were found
+      if( err || !res ){ return cb( err, null ); }
+
+      cb( null, res );
+    });
       // return streets ordered ASC by distance from point
       cb( null, ordered );
     });
