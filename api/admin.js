@@ -25,7 +25,7 @@ function setup( streetDbPath, wofDbPath ){
 
   // query method
   var q = function( coord, cb ){
-console.log('QUERY', coord);
+
     var point = {
       lat: parseFloat( coord.lat ),
       lon: parseFloat( coord.lon )
