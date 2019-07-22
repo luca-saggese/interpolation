@@ -39,7 +39,7 @@ var conn = {
   geocode: geocode( process.argv[2], process.argv[3] ),
   autocomplete: autocomplete( process.argv[2], process.argv[3] ),
   near: near( process.argv[3] ),
-  reverse: near( process.argv[3], process.argv[4]  )
+  reverse: reverse( process.argv[3], process.argv[4], process.argv[4]  )
 };
 
 function log() {
