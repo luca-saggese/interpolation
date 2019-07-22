@@ -9,10 +9,6 @@ var sqlite3 = require('sqlite3'),
 // polyline precision
 var PRECISION = 6;
 
-
-//https://github.com/maxogden/geojson-js-utils
-
-
 // export setup method
 function setup( streetDbPath, wofDbPath ){
 
