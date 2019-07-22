@@ -11,7 +11,7 @@ var PRECISION = 6;
 
 // export setup method
 function setup( streetDbPath, wofDbPath ){
-
+console.log( streetDbPath, wofDbPath );
   // connect to db
   sqlite3.verbose();
   // @todo: this is required as the query uses the 'street.' prefix for tables
