@@ -21,6 +21,7 @@ cat <<EOM
    extract [address_db] [street_db] [street_name]                            geocode address
    autocomplete [address_db] [street_db] [street_name]                       autocomplete address
    wof [wof_db]                                                              parse whosonfirst db
+   admin [street_db] [wof.db] [lat] [lon]
 
    build                                                                     run the import script
 EOM
@@ -48,6 +49,7 @@ case "$1" in
 'geocode') node "$BASEDIR/cmd/geocode" "$2" "$3" "$4" &;;
 'autocomplete') node "$BASEDIR/cmd/autocomplete" "$2" "$3" "$4" &;;
 'wof') node "$BASEDIR/cmd/wof" "$2" &;;
+'admin') node "$BASEDIR/cmd/admin" "$2" "$3" "$4" "$5" &;;
 'build')
 
   # validate all ENV vars are explicitly set
