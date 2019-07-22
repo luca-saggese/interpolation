@@ -46,10 +46,10 @@ module.exports = function( db, point, cb ){
     
     var ret={};
     res.forEach(row=>{
-      if(!ret[row.name]) {
-        ret[row.name] = [row];
+      if(!ret[row.placetype]) {
+        ret[row.placetype] = [row];
       } else {
-        ret[row.name].push(row);
+        ret[row.placetype].push(row);
       }
     });
     Object.keys(ret).forEach(k=>{
