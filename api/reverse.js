@@ -50,6 +50,7 @@ console.log( streetDbPath, wofDbPath );
       var ordered = proximity.nearest.street( res, [ point.lon, point.lat ] );
 
       var result = ordered[0];
+      delete result.street.coordinates;
       query.wof( db, point, function( err, res ){
         if( err || !res ){ return cb( err, null ); }
 
