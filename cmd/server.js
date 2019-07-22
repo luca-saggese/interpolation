@@ -86,7 +86,7 @@ app.get('/search/reverse', function( req, res ){
     if( err ){ return res.status(400).json( err ); }
     if( !point ){ return res.status(200).json({}); }
 
-    res.json( pretty.geojson.point( point, point.lon, point.lat ) );
+    res.json( res );
   });
 });
 
