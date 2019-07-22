@@ -8,8 +8,6 @@ var MAX_MATCHES = 100;
 
 //https://github.com/maxogden/geojson-js-utils
 
-//select * from spr where min_latitude < 41.849015 and max_latitude > 41.849015 and min_longitude< 12.457240 and max_longitude > 12.457240 limit 10;
-
 var SQL = [
   'SELECT street.polyline.id, street.polyline.line, street.names.name, street.names.type, street.names.maxspeed FROM street.polyline',
   'JOIN street.rtree ON street.rtree.id = street.polyline.id',

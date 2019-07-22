@@ -65,6 +65,8 @@ function setup( wofDbPath ){
 
     var sql = 'SELECT * FROM geojson;';
     let rowCount = 0;
+
+    
     asyncEach(db, sql, [], (row, next) => {
       var bbox = JSON.parse(row['body']).bbox;
       var data = {
