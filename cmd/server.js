@@ -21,18 +21,19 @@ const _ = require('lodash');
 
 // optionally override port using env var
 var PORT = process.env.PORT || 3000;
+console.log(process.argv)
 
 // help text
-if( process.argv.length !== 4 ){
+if( process.argv.length !== 5 ){
   console.error('invalid args.');
-  console.error('usage: {addressdb} {streetdb}');
-  console.error('example: node cmd/server address.db street.db');
+  console.error('usage: {addressdb} {streetdb} {wofdb}');
+  console.error('example: node cmd/server address.db street.db wof.db');
   process.exit(1);
 }
 
 var app = express();
 app.use(log());
-console.log(process.argv)
+
 var conn = {
   search: search( process.argv[2], process.argv[3] ),
   extract: extract( process.argv[2], process.argv[3] ),
