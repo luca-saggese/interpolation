@@ -25,7 +25,7 @@ conn.query( point,  function( err, res ){
   if( !res ){
     return console.error( '0 results found' );
   }
-  delete res.coordinates;
+  delete res.street.coordinates;
   console.log(res);
 
 });
