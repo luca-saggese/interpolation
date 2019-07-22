@@ -59,7 +59,7 @@ module.exports = function( db, point, cb ){
         var filtered = ret[k].filter(item => {
           
           
-          var geojson = item.body;
+          var geojson = JSON.parse(item.body);
           console.log(Object.keys(geojson))
           var isIn = gju.pointInPolygon({"type":"Point","coordinates":[point.lon,point.lat]},
                  {"type":"Polygon", "coordinates":geojson.geometry});
