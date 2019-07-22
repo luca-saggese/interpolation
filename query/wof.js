@@ -61,7 +61,7 @@ module.exports = function( db, point, cb ){
           
           var geojson = JSON.parse(item.body);
           console.log({"type":"Point","coordinates":[point.lon,point.lat]},
-                 {"type":"Polygon", "coordinates":geojson.geometry})
+                 {"type":"Polygon", "coordinates":geojson.geometry[0]})
           var isIn = gju.pointInPolygon({"type":"Point","coordinates":[point.lon,point.lat]},
                  {"type":"Polygon", "coordinates":geojson.geometry[0]});
           console.log(isIn);
