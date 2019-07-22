@@ -43,7 +43,6 @@ module.exports = function( db, point, cb ){
     $LAT: point.lat,
     $LIMIT: MAX_MATCHES
   }, (err,res)=>{
-    console.log(err,res)
     
     var ret={};
     res.forEach(row=>{
