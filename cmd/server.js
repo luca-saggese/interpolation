@@ -83,7 +83,7 @@ app.get('/search/reverse', function( req, res ){
 
   var point = { lat: req.query.lat, lon: req.query.lon };
 
-  conn.near.query( point, function( err, ret ){
+  conn.reverse.query( point, function( err, ret ){
     if( err ){ return res.status(400).json( err ); }
     if( !ret ){ return res.status(200).json({}); }
 
