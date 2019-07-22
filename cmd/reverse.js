@@ -19,7 +19,7 @@ var point = {
 
 // optionally pass 'geojson' as the 6th arg to get json output
 var renderer = ( process.argv[6] === 'geojson' ) ? pretty.geojson : pretty.table;
-
+console.log(point)
 conn.query( point,  function( err, res ){
 
   if( !res ){
