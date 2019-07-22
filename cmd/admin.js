@@ -21,9 +21,7 @@ conn.query( point,  function( err, res ){
   if( !res ){
     return console.error( '0 results found' );
   }
-    
-  // only return 10 results
-  res = res.slice(0,10);
+
 
   console.log(res);
 
