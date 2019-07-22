@@ -60,10 +60,12 @@ module.exports = function( db, point, cb ){
           console.log(Object.keys(item))
           
           var geojson = item.body;
-          return gju.pointInPolygon({"type":"Point","coordinates":[point.lon,point.lat]},
+          var isIn = gju.pointInPolygon({"type":"Point","coordinates":[point.lon,point.lat]},
                  {"type":"Polygon", "coordinates":geojson.geometry});
+          console.log(isIn);
+          return isIn
         }); 
-        ret[k] = filtered[0]; 
+        //ret[k] = filtered[0]; 
       }
     });
     cb(err, ret);
