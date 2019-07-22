@@ -60,7 +60,6 @@ module.exports = function( db, point, cb ){
           var geojson = JSON.parse(item.body);
           var isIn = gju.pointInPolygon({"type":"Point","coordinates":[point.lon,point.lat]},
                  {"type":"Polygon", "coordinates":geojson.geometry.coordinates[0]});
-          console.log(item.id, isIn);
           return isIn
         }); 
         ret[k] = filtered[0].name; 

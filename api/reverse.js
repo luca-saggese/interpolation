@@ -30,7 +30,6 @@ function setup( streetDbPath, wofDbPath ){
       lat: parseFloat( coord.lat ),
       lon: parseFloat( coord.lon )
     };
-    console.log('point', point)
 
     // error checking
     if( isNaN( point.lat ) ){ return cb( 'invalid latitude' ); }
