@@ -24,7 +24,7 @@ id|parent_id|name|placetype|country|repo|latitude|longitude|min_latitude|min_lon
 
 var SQL = [
   'SELECT * FROM wof.spr',
-  'JOIN wof.geojson ON wof.geojson.id = wof.spr.id')',
+  'JOIN wof.geojson ON wof.geojson.id = wof.spr.id',
   'WHERE (wof.spr.min_latitude < $LAT and wof.spr.ax_latitude > $LAT and wof.spr.min_longitude < $LON and wof.spr.max_longitude > $LON)',
   'LIMIT $LIMIT;'
 ].join(' ');
