@@ -86,7 +86,7 @@ app.get('/search/reverse', function( req, res ){
   conn.near.query( point, function( err, point ){
     if( err ){ return res.status(400).json( err ); }
     if( !point ){ return res.status(200).json({}); }
-
+console.log(res)
     res.json( res );
   });
 });
