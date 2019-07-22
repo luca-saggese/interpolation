@@ -54,7 +54,7 @@ module.exports = function( db, point, cb ){
     });
     Object.keys(ret).forEach(k=>{
       if(ret[k].length === 1) {
-        ret[k] = ret[k][0]; 
+        ret[k] = ret[k][0].name; 
       } else {
         var filtered = ret[k].filter(item => {
           
@@ -65,7 +65,7 @@ module.exports = function( db, point, cb ){
           console.log(item.id, isIn);
           return isIn
         }); 
-        ret[k] = filtered[0]; 
+        ret[k] = filtered[0].name; 
       }
       delete ret[k].body;
     });
