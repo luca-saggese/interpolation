@@ -2,7 +2,7 @@ var admin = require('../api/admin'),
     pretty = require('../lib/pretty');
 
 // help text
-if( process.argv.length !== 5  ){
+if( process.argv.length !== 6  ){
   console.error('invalid args.');
   console.error('usage:  {streetdb} {wofdb} {lat} {lon}');
   console.error('example: node cmd/admin street.db wof.db "-41.288788" "174.766843"');
