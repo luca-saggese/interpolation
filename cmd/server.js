@@ -32,7 +32,7 @@ if( process.argv.length !== 4 ){
 
 var app = express();
 app.use(log());
-
+console.log(process.argv)
 var conn = {
   search: search( process.argv[2], process.argv[3] ),
   extract: extract( process.argv[2], process.argv[3] ),
