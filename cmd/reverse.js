@@ -26,23 +26,7 @@ conn.query( point,  function( err, res ){
     return console.error( '0 results found' );
   }
     
-  // only return 10 results
-  res = res.slice(0,10);
-
-  console.log(res)
-
-  if( renderer === pretty.geojson ){
-    console.log( JSON.stringify( renderer( res ), null, 2 ) );
-  } else {
-    res=res.map(i=>{
-      var street = i.street;
-      street.coordinates= i.proj.point[0] + ' ' + i.proj.point[1] ;
-      street.distance = Math.round(i.proj.dist*1000000)/1000;
-      delete street.line;
-      return street;
-    });
-    console.log( renderer( res ) );
-  }
+  console.log(res);
 
 });
 

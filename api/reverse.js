@@ -50,20 +50,13 @@ function setup( streetDbPath, wofDbPath ){
       // order streets by proximity from point (by projecting it on to each line string)
       var ordered = proximity.nearest.street( res, [ point.lon, point.lat ] );
 
-      console.log(ordered)
-    
-/*
+      var result = ordered[0];
+      query.wof( db, point, function( err, res ){
+        if( err || !res ){ return cb( err, null ); }
 
-    // perform a db lookup for nearby streets
-    query.wof( db, point, function( err, res ){
-
-      // an error occurred or no results were found
-      if( err || !res ){ return cb( err, null ); }
-
-      cb( null, res );
-    });*/
-      // return streets ordered ASC by distance from point
-      cb( null, ordered );
+        result.admin = res;
+        cb( null, result );
+      });
     });
   };
 
