@@ -64,3 +64,63 @@ module.exports.address = function( db, rebuild, done ){
     db.wait(done);
   });
 };
+
+//https://github.com/luca-saggese/pbf/blob/master/sqlite/connection.go
+module.exports.osm = function( db, rebuild, done ){
+  db.serialize(function(){
+
+    // create address table
+    if( rebuild ){ db.run('DROP TABLE IF EXISTS address;'); }
+    db.run([
+      'CREATE TABLE IF NOT EXISTS nodes (',
+        'id INTEGER NOT NULL PRIMARY KEY,',
+        'lon REAL NOT NULL,',
+        'lat REAL NOT NULL',
+      ');'
+    ].join(' '));
+
+
+
+/*
+    
+  CREATE TABLE IF NOT EXISTS node_tags (
+      ref INTEGER NOT NULL,
+      key TEXT,
+      value TEXT,
+      UNIQUE( ref, key ) ON CONFLICT REPLACE
+  );
+  CREATE TABLE IF NOT EXISTS ways (
+      id INTEGER NOT NULL PRIMARY KEY
+  );
+  CREATE TABLE IF NOT EXISTS way_tags (
+      ref INTEGER NOT NULL,
+      key TEXT,
+      value TEXT,
+      UNIQUE( ref, key ) ON CONFLICT REPLACE
+  );
+  CREATE TABLE IF NOT EXISTS way_nodes (
+      way INTEGER NOT NULL,
+      num INTEGER NOT NULL,
+      node INTEGER NOT NULL,
+      UNIQUE( way, num ) ON CONFLICT REPLACE
+  );
+  CREATE TABLE IF NOT EXISTS relations (
+      id INTEGER NOT NULL PRIMARY KEY
+  );
+  CREATE TABLE IF NOT EXISTS relation_tags (
+      ref INTEGER NOT NULL,
+      key TEXT,
+      value TEXT,
+      UNIQUE( ref, key ) ON CONFLICT REPLACE
+  );
+  CREATE TABLE IF NOT EXISTS members (
+      relation INTEGER NOT NULL,
+      type TEXT,
+      ref INTEGER NOT NULL,
+      role TEXT
+  );
+  */
+
+    db.wait(done);
+  });
+};
